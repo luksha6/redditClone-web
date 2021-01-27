@@ -1,6 +1,6 @@
 
 
-const Index = () => (
+ const Index = () => (
   <div>hello</div>
 );
 

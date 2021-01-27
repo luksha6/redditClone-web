@@ -10,7 +10,7 @@ type InputFieldProps =  InputHTMLAttributes<HTMLInputElement> & {
 
 export const InputField: React.FC<InputFieldProps> = ({
     label, 
-    size: _,
+    size: _,  // _ <- unused variable
     ...props}) => {
     const [field, {error}] = useField(props);
     return (
