@@ -20,7 +20,7 @@ export const InputField: React.FC<InputFieldProps> = ({
         {...field} 
         {...props} 
         id={field.name} 
-        placehol der={field.name} />
+        placeholder={field.name} />
         {error ? <FormErrorMessage>{error}</FormErrorMessage> : null}
       </FormControl>
     );
