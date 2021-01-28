@@ -5,8 +5,7 @@ register(options: {username: $username, password: $password}) {
     message
   }
   user {
-    id
-    username
+    ...RegularUser
   }
  }
 }
