@@ -8,5 +8,5 @@ register(options: {username: $username, password: $password}) {
     id
     username
   }
-}
+ }
 }
