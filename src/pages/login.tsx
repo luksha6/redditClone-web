@@ -1,11 +1,14 @@
-import React from "react";
-import {Form, Formik} from 'formik'
-import {Box, Button } from "@chakra-ui/react";
-import {Wrapper} from "../components/Wrapper";
-import { InputField } from "../components/InputField";
-import { useLoginMutation } from "../generated/graphql";
-import { toErrorMap } from "../utils/toErrorMap";
+import { Box, Button, Flex, Link } from "@chakra-ui/react";
+import { Form, Formik } from 'formik';
+import { withUrqlClient } from 'next-urql';
+import NextLink from 'next/link';
 import { useRouter } from "next/router";
+import React from "react";
+import { InputField } from "../components/InputField";
+import { Wrapper } from "../components/Wrapper";
+import { useLoginMutation } from "../generated/graphql";
+import { createUrqlClient } from "../utils/createUrqlClient";
+import { toErrorMap } from "../utils/toErrorMap";
 
 const Login: React.FC<{}> = ({}) => {
 
@@ -15,9 +18,9 @@ const Login: React.FC<{}> = ({}) => {
     <Wrapper variant="small">
     <Formik 
         
-    initialValues={{username: "", password: ""}} 
+    initialValues={{usernameOrEmail: "", password: ""}} 
     onSubmit={async (values, {setErrors}) => {
-        const response = await login({options: values});
+        const response = await login(values);
          if (response.data?.login.errors) {
             setErrors(toErrorMap(response.data.login.errors));
          } else if (response.data?.login.user) {
@@ -29,9 +32,9 @@ const Login: React.FC<{}> = ({}) => {
 
     <Form>
             <InputField 
-            name='username'
-            placeholder='username'
-            label='Username'
+            name='usernameOrEmail'
+            placeholder='username or email'
+            label='Username or Email'
             />
 
             <Box mt={4}>
@@ -42,6 +45,14 @@ const Login: React.FC<{}> = ({}) => {
             type='password'
             />
             </Box>
+
+            <Flex mt={2 }>
+            <NextLink href="/forgot-password">
+                 <Link ml='auto'>
+                 forgot password?
+                 </Link>
+            </NextLink>
+            </Flex>
             
             <Box mt={4}>
             <Button
@@ -59,4 +70,4 @@ const Login: React.FC<{}> = ({}) => {
     );
 };
 
-export default Login;
+export default withUrqlClient(createUrqlClient)(Login);
