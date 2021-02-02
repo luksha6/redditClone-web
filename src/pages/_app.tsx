@@ -1,7 +1,5 @@
-import { ChakraProvider } from '@chakra-ui/react'
-import {Provider, createClient, dedupExchange, fetchExchange } from 'urql'
-import theme from '../theme'
-import { LoginMutation, LogoutMutation, MeDocument, MeQuery, RegisterMutation } from '../generated/graphql';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from '../theme';
 
 
 function MyApp({ Component, pageProps }: any) {
