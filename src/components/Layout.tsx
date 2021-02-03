@@ -1,4 +1,3 @@
-import { Children } from 'react';
 import { NavBar } from './NavBar';
 import { Wrapper } from './Wrapper';
 import { WrapperVariant } from './Wrapper';
