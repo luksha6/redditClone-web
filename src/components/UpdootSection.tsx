@@ -8,7 +8,7 @@ interface UpdootSectionProps {
 }
 
 export const UpdootSection: React.FC<UpdootSectionProps> = ({ post }) => {
-    const [vote] = useVoteMutation();
+    const [, vote] = useVoteMutation();
 
     return (
         <Flex 
