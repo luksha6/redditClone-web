@@ -19,6 +19,9 @@ export const UpdootSection: React.FC<UpdootSectionProps> = ({ post }) => {
           <Box>
           <ArrowUpIcon
           onClick={() => {
+              if (post.voteStatus === 1) {
+                  return;
+              }
               vote({
                   postId: post.id,
                   value: 1
@@ -27,12 +30,15 @@ export const UpdootSection: React.FC<UpdootSectionProps> = ({ post }) => {
           cursor="pointer"
           w={8} 
           h={8} 
-          color="green.800" />
+          color={post.voteStatus === 1 ? 'green.500' : undefined} />
           </Box>
           {post.points} 
           <Box>
           <ArrowDownIcon 
           onClick={() => {
+            if (post.voteStatus === -1) {
+                return;
+            }
             vote({
                 postId: post.id,
                 value: -1
@@ -41,7 +47,7 @@ export const UpdootSection: React.FC<UpdootSectionProps> = ({ post }) => {
           cursor="pointer"
           w={8} 
           h={8} 
-          color="red.800" />
+          color={post.voteStatus === -1 ? 'red.500' : undefined} />
           </Box>
          </Flex>
     );
