@@ -63,5 +63,5 @@ import { createUrqlClient } from "../utils/createUrqlClient";
 );
 };
 
-export default withUrqlClient(createUrqlClient)(Index);
+export default withUrqlClient(createUrqlClient, {ssr: true})(Index);
  
