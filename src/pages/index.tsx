@@ -24,10 +24,7 @@ import { createUrqlClient } from "../utils/createUrqlClient";
    return(
     <Layout>
         <Flex>
-          <Heading>Simple Blog</Heading>
-          <NextLink href='/create-post'>
-          <Link ml='auto' mt='auto'>create post</Link>
-          </NextLink>
+          <Heading>Posts</Heading>
         </Flex>
       
       <br />
