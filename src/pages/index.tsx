@@ -2,9 +2,10 @@ import { Box, Button, Flex, Heading, Link, Stack, Text } from '@chakra-ui/react'
 import { withUrqlClient } from 'next-urql';
 import NextLink from 'next/link';
 import { useState } from 'react';
+import { EditDeletePostButtons } from '../components/EditDeletePostButtons';
 import { Layout } from "../components/Layout";
 import { UpdootSection } from '../components/UpdootSection';
-import { usePostsQuery } from "../generated/graphql";
+import { useMeQuery, usePostsQuery } from "../generated/graphql";
 import { createUrqlClient } from "../utils/createUrqlClient";
 
  const Index = () => {
@@ -24,10 +25,7 @@ import { createUrqlClient } from "../utils/createUrqlClient";
    return(
     <Layout>
         <Flex>
-          <Heading>Simple Blog</Heading>
-          <NextLink href='/create-post'>
-          <Link ml='auto' mt='auto'>create post</Link>
-          </NextLink>
+          <Heading>Posts</Heading>
         </Flex>
       
       <br />
@@ -36,13 +34,24 @@ import { createUrqlClient } from "../utils/createUrqlClient";
       <div>loading...</div>
       ) : (
       <Stack spacing={8}>
-      {data!.posts.posts.map((p) => (
+      {data!.posts.posts.map((p) => 
+      !p ? null : (
        <Flex key={p.id} p={5} shadow="md" borderWidth="1px">
          <UpdootSection post={p}></UpdootSection>
-        <Box>
-        <Heading fontSize="xl">{p.title}</Heading> 
+        <Box flex={1}>
+        <NextLink href="/post/[id]" as ={`/post/${p.id}`}>
+          <Link>
+            <Heading fontSize="xl">{p.title}</Heading> 
+          </Link>
+        </NextLink>
         <Text> posted by {p.creator.username }</Text>
-        <Text mt={4}>{p.textSnippet}</Text>
+        <Flex>
+         <Text flex={1} mt={4}>{p.textSnippet}</Text>
+          <Box  ml='auto' mt='auto'>
+            <EditDeletePostButtons id={p.id} creatorId={p.creatorId} />
+          </Box>
+        
+        </Flex>
         </Box>
        </Flex>
           ))}
