@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { EditDeletePostButtons } from '../components/EditDeletePostButtons';
 import { Layout } from "../components/Layout";
 import { UpdootSection } from '../components/UpdootSection';
-import { useMeQuery, usePostsQuery } from "../generated/graphql";
+import { usePostsQuery } from "../generated/graphql";
 import { createUrqlClient } from "../utils/createUrqlClient";
 
  const Index = () => {
@@ -48,9 +48,10 @@ import { createUrqlClient } from "../utils/createUrqlClient";
         <Flex>
          <Text flex={1} mt={4}>{p.textSnippet}</Text>
           <Box  ml='auto' mt='auto'>
-            <EditDeletePostButtons id={p.id} creatorId={p.creatorId} />
+            <EditDeletePostButtons 
+            id={p.id} 
+            creatorId={p.creatorId} />
           </Box>
-        
         </Flex>
         </Box>
        </Flex>
